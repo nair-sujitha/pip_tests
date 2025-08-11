@@ -1,0 +1,52 @@
+suite_setup:
+  log: "Setting up the prod props test suite"
+  script: scripts/setup_suite.py
+
+suite_teardown:
+  log: "Cleaning up prod props test suite"
+  script: scripts/teardown_suite.py
+
+tests:
+  - id: TC0002
+    labels: [dev]
+    name: product_price_check_HDPP_1
+    task: |
+      Important: I am UI Automation tester validating homedepot website
+      Type in 'flocked pre lit christmas trees' in the search bar and click search button
+      from the listed options, select - "Puleo International" "7.5 ft. Prelit Incandescent Aspen Green Fir Flocked Artificial Christmas Tree with 700 UL Clear Lights"
+      verify the user is on the product information page using the custom function check_product_info_page_url
+      get the price of the product
+      verify that the product has a Home Depot Protection Plan by Allstate for 2 Year priced at $19
+    model: model.product_props.ProductProps
+    controller: controller.productprops_controller.ProductPropsController
+    expectations:
+      from_json:
+        file: test_data/TC0002_expected_output.json
+    expectations1:
+      price:
+        type: contains
+        value: $203.99
+      is_protection_plan_available:
+        type: equals
+        value: true
+
+  - id: TC0003
+    labels: [dev, smoke]
+    name: product_price_delivery_check
+    task: |
+      Important: I am UI Automation tester validating homedepot website
+      Type in 'JUST ADD ICE ORCHIDS' in the search bar and click search button
+      from the listed options, select - Just Add Ice Premium Orchid (Phalaenopsis) Watercolor Blue Plant in 5 in. White Ceramic Pottery
+      get the price of the product
+      verify Delivery is free
+    model: model.product_props.ProductProps
+    expectations:
+      from_json:
+        file: test_data/TC0003_expected_output.json
+    expectations1:
+      price:
+        type: equals
+        value: $42.71
+      is_delivery_free:
+        type: equals
+        value: true

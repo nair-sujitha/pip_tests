@@ -1,0 +1,55 @@
+tests:
+  - id: TC0004
+    labels: [smoke]
+    name: frequently_bought
+    task: |
+          Important: I am UI Automation tester validating homedepot website
+          select the Cumberland store and zip code 30339 using the select_cumberland_store custom function
+          type in 'glacier bay vanity mirrors' in the search bar and click search button
+          verify the user is in product listing page using the check_plp_url custom function
+          out of the listed options, Click on "Glacier Bay" "36 in. x 60 in. Classic Rectangular Frameless Wall Bathroom Vanity Mirror"
+          verify the user is on the product information page using the check_product_info_page_url custom function
+          On the product information page, navigate to the 'Frequently Bought Together' section towards the bottom of the page
+          Count and find the number of items displayed in the 'Frequently Bought Together' section
+          Verify that the Add Items to Cart button is displayed and enabled in this section
+          Get the exact text of the Add Items to Cart button
+    model: model.fbt.FrequentlyBoughtTogether
+    controller: controller.fbt_controller.FBTController
+    expectations:
+      from_json:
+        file: test_data/TC0004_expected_output.json
+    setup:
+      log: "Setting up delivery data"
+      script: scripts/setup_tc001.py
+    teardown:
+      log: "Cleaning delivery data"
+      script: scripts/teardown_tc001.py
+
+  - id: TC0005
+    labels: [ smoke ]
+    name: qna_reviews
+    task: |
+      Important: I am UI Automation tester validating homedepot website
+      type in 'crane humidifiers' in the search bar and click search button
+      verify the user is in product listing page using the check_plp_url custom function
+      out of the listed options, click on "Crane" "1.2 Gal. Cool Mist Top Fill Humidifier & Aroma Diffuser for Medium to Large Rooms up to 500 sq. ft"
+      verify the user is on the product information page using the check_product_info_page_url custom function
+      On the product information page, navigate to the 'Questions & Answers' section towards the bottom of the page
+      Get the number of questions in the 'Questions & Answers'
+      Expand the 'Questions & Answers' section and verify that the section has valid question and answer data
+      Get the total number of pages of question-answer data
+      Get the number of questions listed on a page
+      On the product information page, navigate to the 'Customer Reviews' section towards the bottom of the page
+      Get the total number of reviews added
+      Get the star rating of the product
+    model: model.qna_reviews.QnAReviews
+    controller: controller.qna_controller.QNAController
+    expectations:
+      from_json:
+        file: test_data/TC0005_expected_output.json
+    setup:
+      log: "Setting up delivery data"
+      script: scripts/setup_tc001.py
+    teardown:
+      log: "Cleaning delivery data"
+      script: scripts/teardown_tc001.py

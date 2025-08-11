@@ -1,0 +1,7 @@
+setup:
+  log: " **************** Global session setup starting ****************** "
+  script: "scripts/setup_global_data.py"
+
+teardown:
+  log: " ************** Global session teardown starting ***************** "
+  script: "scripts/cleanup_global_data.py"
