@@ -1,0 +1,48 @@
+tests:
+  - id: TC0006
+    labels: [smoke]
+    name: add_to_cart_checks
+    task: |
+          Important: I am UI Automation tester validating homedepot website
+          Navigate to https://www.homedepot.com/p/Crescent-48-oz-Fiberglass-Drilling-Hammer-CHFDRL48/321709101
+          verify the user is on the product information page using the check_product_info_page_url custom function
+          Scroll down slowly till the end of the product display image box to find the 'Add to Cart' Button on the page besides the product display image box
+          Do not scroll beyond the product display image box. If you are unable to find the 'Add to Cart' button after scrolling down till this point, abort the task.
+          If 'Add to Cart' button is found, verify that the 'Add to Cart' Button is located at the right on the product information page besides the product display image box
+          If 'Add to Cart' button is found, Verify that the 'Add to Cart' Button is orange in colour with the text color in white
+          If 'Add to Cart' button is found, Verify that the 'Add to Cart' Button is located below the Delivery Details on the product information page
+    model: model.add_to_cart_checks.AddToCartChecks
+    controller: controller.base_pip_controller.BasePIPController
+    expectations:
+      from_json:
+        file: test_data/TC0006_expected_output.json
+    setup:
+      log: "Setting up delivery data"
+      script: scripts/setup_tc001.py
+    teardown:
+      log: "Cleaning delivery data"
+      script: scripts/teardown_tc001.py
+
+  - id: TC0007
+    labels: [smoke]
+    name: add_to_cart_checks_1
+    task: |
+          Important: I am UI Automation tester validating homedepot website
+          Navigate to https://www.homedepot.com/p/Crescent-48-oz-Fiberglass-Drilling-Hammer-CHFDRL48/321709101
+          verify the user is on the product information page using the check_product_info_page_url custom function
+          Scroll down slowly till the end of the product display image box to find the 'Add to Cart' Button on the page besides the product display image box
+          Do not scroll beyond the product display image box. If you are unable to find the 'Add to Cart' button after scrolling down till this point, abort the task.
+          If 'Add to Cart' button is found, verify that the 'Add to Cart' Button is located at the right on the product information page besides the product display image box
+          If 'Add to Cart' button is found, Verify that the 'Add to Cart' Button is orange in colour with the text color in white
+          If 'Add to Cart' button is found, Verify that the 'Add to Cart' Button is located above the Delivery Details on the product information page
+    model: model.add_to_cart_checks.AddToCartChecks
+    controller: controller.base_pip_controller.BasePIPController
+    expectations:
+      from_json:
+        file: test_data/TC0006_expected_output.json
+    setup:
+      log: "Setting up delivery data"
+      script: scripts/setup_tc001.py
+    teardown:
+      log: "Cleaning delivery data"
+      script: scripts/teardown_tc001.py

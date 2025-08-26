@@ -1,0 +1,18 @@
+tests:
+  - id: TC0008
+    labels: [smoke]
+    name: e2e_gm
+    task: |
+          Important: I am UI Automation tester validating homedepot website
+          type in '310616272' in the search bar and click search button
+          verify the user is on the product information page
+          On the product information page, right below the delivery details, verify that the 'Add to Cart' button is available
+          Click on the 'Add to Cart' button. The 'Add to Cart' drawer should be open
+          In the 'Add to Cart' drawer, click on the 'View Cart' button
+          Verify that the user is on the cart page and the 'Checkout' button is available
+    model: model.e2e.E2E
+    controller: controller.base_pip_controller.BasePIPController
+    expectations:
+      is_checkout_available:
+        type: equals
+        value: true
